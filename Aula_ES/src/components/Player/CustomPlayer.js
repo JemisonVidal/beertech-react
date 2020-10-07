@@ -20,14 +20,18 @@ export default class CustomPlayer {
   }
 
   render(containerHTML) {
-    const containerElement = document.getElementById(containerHTML);
-    if (!containerElement) {
-      const sectionElement = document.createElement("section");
-      sectionElement.setAttribute("id", containerHTML)
-      sectionElement.appendChild(this.videoElementHTML);
-      document.body.appendChild(sectionElement);
-    } else {
-      containerHTML.appendChild(this.videoElementHTML);
+    try {
+      const containerElement = document.getElementById(containerHTML);
+      if (!containerElement) {
+        const sectionElement = document.createElement("section");
+        sectionElement.setAttribute("id", containerHTML)
+        sectionElement.appendChild(this.videoElementHTML);
+        document.body.appendChild(sectionElement);
+      } else {
+        containerHTML.appendChild(this.videoElementHTML);
+      }
+    } catch (error) {
+      throw (`Error: ${error}`);
     }
   }
 }
