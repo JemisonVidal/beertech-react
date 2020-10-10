@@ -1,0 +1,18 @@
+@import "../../../assets/scss/variables";
+
+.card {
+  display: inline-block;
+  width: 100%;
+  max-width: 350px;
+  margin: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  background: $theme-white;
+  padding: 20px;
+  border: 1px solid #000;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
