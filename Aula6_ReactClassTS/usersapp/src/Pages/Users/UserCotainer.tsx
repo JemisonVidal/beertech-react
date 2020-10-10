@@ -10,7 +10,7 @@ interface IState extends IUsers {
 }
 
 class UserPage extends React.Component<{}, IState> {
-  public state = {
+  public state: IState = {
     name: "",
     data: []
   }
@@ -32,19 +32,20 @@ class UserPage extends React.Component<{}, IState> {
       return null;
     }
 
-
-
     return data.map((user, index) => {
-      const { name } = user;
+      const { id, name, email, address } = user;
       return (
-        <Card key={index}>
+        <Card key={id}>
           <div>{`Name: ${name}`}</div>
+          <div>{`Email: ${email}`}</div>
+          <div>{`Street: ${address.street}`}</div>
+          <div>{`Suite: ${address.suite}`}</div>
+          <div>{`City: ${address.city}`}</div>
+          <div>{`Zipcode: ${address.zipcode}`}</div>
         </Card>
       )
     });
-
   }
-
 
   render() {
     return (
@@ -68,7 +69,6 @@ class UserPage extends React.Component<{}, IState> {
   private HandleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ ...this.state, name: event.target.value })
   }
-
 }
 
 export default UserPage;
