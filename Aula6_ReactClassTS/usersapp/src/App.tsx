@@ -1,9 +1,12 @@
 import React from 'react';
+import UserPage from './Pages/Users'
+
+import './assets/scss/main.scss';
 
 function App() {
   return (
     <div className="App">
-      
+      <UserPage name="" users={[]} />
     </div>
   );
 }
