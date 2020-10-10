@@ -3,32 +3,16 @@ import Card from '../../Shared/components/Card'
 import Input from '../../Shared/components/Input'
 import APIService from '../../Services/APIService'
 import Axios from '../../Services/AxiosHandler'
-//import Users from '../../Interfaces/IUsers'
+import IUsers from '../../Interfaces/IUsers'
 
-interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
+interface IState extends IUsers {
+  name: string
 }
 
-interface Users {
-  name: String,
-  id: number,
-  username: String,
-  email: String,
-  address: Address
-}
-
-interface IState {
-  name: string,
-  users: Users[]
-}
-
-class UserPage extends React.Component<IState> {
+class UserPage extends React.Component<{}, IState> {
   public state = {
-    name: '',
-    users: []
+    name: "",
+    data: []
   }
 
   private getUsers = async () => {
@@ -37,24 +21,20 @@ class UserPage extends React.Component<IState> {
   }
 
   async componentDidMount() {
-    //this.getUsers().then(response => this.setState({ users: response }));
     const users = await this.getUsers();
-    if (users) this.setState({ users: users })
+    if (users) this.setState({ ...this.state, data: users.data })
   }
 
   private renderUser = () => {
-    const { users } = this.state;
+    const { data } = this.state;
 
-    if (users.length <= 0) {
+    if (data.length <= 0) {
       return null;
     }
 
-    console.log(users)
-    const test = [{
-      name: "teste1"
-    }]
 
-    return test.map((user, index) => {
+
+    return data.map((user, index) => {
       const { name } = user;
       return (
         <Card key={index}>
@@ -74,7 +54,6 @@ class UserPage extends React.Component<IState> {
             <Input label="name" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></Input>
           </div>
         </div>
-
         <div className="row">
           <div className="col">
             {
@@ -87,7 +66,7 @@ class UserPage extends React.Component<IState> {
   }
 
   private HandleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ name: event.target.value })
+    this.setState({ ...this.state, name: event.target.value })
   }
 
 }
