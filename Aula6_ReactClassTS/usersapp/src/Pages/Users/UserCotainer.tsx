@@ -52,7 +52,7 @@ class UserPage extends React.Component<{}, IState> {
       <div className="container">
         <div className="row">
           <div className="col">
-            <Input label="name" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></Input>
+            <Input label="Name" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></Input>
           </div>
         </div>
         <div className="row">

@@ -29,3 +29,16 @@ label {
   height: 3rem;
   font-size: 1rem;
 }
+
+input:valid,
+input:focus {
+  border-bottom: 2px solid #26a69a;  
+}
+
+input:valid + label,
+input:focus + label {
+  color: #26a69a;
+  font-size: .8rem;
+  top: -20px;
+  pointer-events: none;
+}

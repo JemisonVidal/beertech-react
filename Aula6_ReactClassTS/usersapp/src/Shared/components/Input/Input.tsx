@@ -1,4 +1,5 @@
-import React, { ChangeEvent, Component } from 'react';
+import React, { Component } from 'react';
+import './Input.style.scss';
 
 interface IProps {
   label: string,
@@ -17,13 +18,19 @@ class Input extends Component<IProps> {
   render() {
     return (
       <div className="input-container">
+        <input
+          id={this.props.label}
+          className="input"
+          type={this.props.type}
+          value={this.props.value}
+          pattern=".+"
+          required={this.props.required ? this.props.required : false}
+          onChange={this.props.onChange}
+        />
         <label className="label" htmlFor={this.props.label}>{this.props.label}</label>
-        <input className="input" id={this.props.label} type={this.props.type} onChange={this.props.onChange} value={this.props.value} required={this.props.required} placeholder={this.props.placeholder} />
       </div>
     )
   }
-
-
 }
 
 export default Input;
