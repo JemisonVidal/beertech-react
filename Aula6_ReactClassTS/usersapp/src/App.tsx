@@ -1,16 +1,18 @@
 import React from 'react';
 import UserPage from './Pages/Users'
+import BaseLayout from './Shared/components/BaseLayout/Base/index';
 
 import './assets/scss/main.scss';
 
 function App() {
   return (
     <div className="App">
-      <UserPage />
+      <BaseLayout>
+        <UserPage />
+      </BaseLayout>
     </div>
   );
 }
-
 export default App;
 
 
