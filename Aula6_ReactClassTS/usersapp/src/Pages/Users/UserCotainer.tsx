@@ -82,7 +82,7 @@ class UserPage extends React.Component<{}, IState> {
     const { data, setData } = this.context
     const { usersInitial } = this.state
     const newData = usersInitial.filter((data: any) => {
-      return data.name.includes(event.target.value)
+      return data.name.toUpperCase().includes(event.target.value.toUpperCase())
     });
     setData(newData)
     this.setState({ name: event.target.value })
