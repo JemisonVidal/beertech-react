@@ -42,6 +42,12 @@ body{
     margin-right: auto;
     margin-left: auto;
   }
+  .col{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   .row {
     width: 100%;
   }

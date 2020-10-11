@@ -1,3 +1,23 @@
+@import "../../../../../assets/scss/variables";
+
 .header {
-  
+  background-color: $green;
+  width: 100%;
+  color: $purple;
+  font-size: 15px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    width: 52%;
+    min-width: 380px;
+    max-width: 823px;
+    font-weight: bold;
+
+    span{
+      font-weight: normal;
+    }
+  }
 }

@@ -13,7 +13,7 @@ class Footer extends Component<IProps> {
   render() {
     return (
       <footer className="footer">
-        footer
+        <p>Legalize your trip</p>
       </footer>
     )
   }

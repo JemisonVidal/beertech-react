@@ -13,7 +13,10 @@ class Header extends Component<IProps> {
   render() {
     return (
       <header className="header">
-        header
+        <p>Legalize Your Trip
+          <br />
+          <span>Hotels App</span>
+        </p>
       </header>
     )
   }

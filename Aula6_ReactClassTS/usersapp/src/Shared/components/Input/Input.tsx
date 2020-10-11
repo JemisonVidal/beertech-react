@@ -28,8 +28,9 @@ class Input extends Component<IProps> {
           required={this.props.required ? this.props.required : false}
           onChange={this.props.onChange}
           onKeyUp={this.props.onKeyUp}
+          placeholder="Search"
         />
-        <label className="label" htmlFor={this.props.label}>{this.props.label}</label>
+        <label className="label" htmlFor={this.props.label}>Users</label>
       </div>
     )
   }
