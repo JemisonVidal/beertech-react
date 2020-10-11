@@ -1,18 +1,20 @@
 import React from 'react';
 import Card from '../../Shared/components/Card'
-import Input from '../../Shared/components/Input'
 import APIService from '../../Services/APIService'
 import Axios from '../../Services/AxiosHandler'
-import IUsers from '../../Interfaces/IUsers'
+import InputSearch from '../../Pages/Users/Components/InputSearch/index'
+import StoreContext from '../../Shared/Store/StoreContext'
+import User from "../../Repository/User";
 
-interface IState extends IUsers {
+interface IState {
   name: string
 }
 
 class UserPage extends React.Component<{}, IState> {
+  static contextType = StoreContext
+
   public state: IState = {
-    name: "",
-    data: []
+    name: ""
   }
 
   private getUsers = async () => {
@@ -22,19 +24,24 @@ class UserPage extends React.Component<{}, IState> {
 
   async componentDidMount() {
     const users = await this.getUsers();
-    if (users) this.setState({ ...this.state, data: users.data })
+    if (users) {
+      const { setData } = this.context
+      setData(users.data)
+    }
   }
 
   private renderUser = () => {
-    const { data } = this.state;
+    const data = this.context.data as User[]
+    const setData = this.context.setData
 
     if (data.length <= 0) {
       return null;
     }
 
-    return data.map((user, index) => {
+    return data.map((user) => {
       const { id, name, email, address } = user;
       return (
+        //TODO: Passar o objeto user para o component Card
         <Card key={id}>
           <div>{`Name: ${name}`}</div>
           <div>{`Email: ${email}`}</div>
@@ -52,7 +59,7 @@ class UserPage extends React.Component<{}, IState> {
       <div className="container">
         <div className="row">
           <div className="col">
-            <Input label="Name" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></Input>
+            <InputSearch label="InputSearch" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></InputSearch>
           </div>
         </div>
         <div className="row">
