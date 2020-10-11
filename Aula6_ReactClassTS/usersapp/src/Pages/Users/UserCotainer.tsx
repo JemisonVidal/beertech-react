@@ -7,14 +7,16 @@ import StoreContext from '../../Shared/Store/StoreContext'
 import User from "../../Repository/User";
 
 interface IState {
-  name: string
+  name: string,
+  usersInitial: User[]
 }
 
 class UserPage extends React.Component<{}, IState> {
   static contextType = StoreContext
 
   public state: IState = {
-    name: ""
+    name: "",
+    usersInitial: []
   }
 
   private getUsers = async () => {
@@ -24,9 +26,11 @@ class UserPage extends React.Component<{}, IState> {
 
   async componentDidMount() {
     const users = await this.getUsers();
+
     if (users) {
       const { setData } = this.context
       setData(users.data)
+      this.setState({ ...this.state, usersInitial: users.data })
     }
   }
 
@@ -59,7 +63,7 @@ class UserPage extends React.Component<{}, IState> {
       <div className="container">
         <div className="row">
           <div className="col">
-            <InputSearch label="InputSearch" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName}></InputSearch>
+            <InputSearch label="InputSearch" type="text" placeholder="Name" value={this.state.name} onChange={this.HandleChangeName} fieldFilter={"name"}></InputSearch>
           </div>
         </div>
         <div className="row">
@@ -73,8 +77,15 @@ class UserPage extends React.Component<{}, IState> {
     )
   }
 
+  //TODO: passar o filter para o componente InputSearch
   private HandleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ ...this.state, name: event.target.value })
+    const { data, setData } = this.context
+    const { usersInitial } = this.state
+    const newData = usersInitial.filter((data: any) => {
+      return data.name.includes(event.target.value)
+    });
+    setData(newData)
+    this.setState({ name: event.target.value })
   }
 }
 

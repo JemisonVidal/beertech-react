@@ -6,8 +6,9 @@ interface IProps {
   type: string,
   placeholder: string,
   value: any,
-  onChange: any,
   required?: boolean
+  onChange: any,
+  onKeyUp?: any,
 }
 
 class Input extends Component<IProps> {
@@ -26,6 +27,7 @@ class Input extends Component<IProps> {
           pattern=".+"
           required={this.props.required ? this.props.required : false}
           onChange={this.props.onChange}
+          onKeyUp={this.props.onKeyUp}
         />
         <label className="label" htmlFor={this.props.label}>{this.props.label}</label>
       </div>
