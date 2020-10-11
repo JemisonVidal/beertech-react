@@ -1,15 +1,18 @@
 import React from 'react';
 import UserPage from './Pages/Users'
-import BaseLayout from './Shared/components/BaseLayout/Base/index';
+import BaseLayout from './Shared/components/BaseLayout/Base/index'
+import ProviderContext from './Shared/Store/ProviderContext'
 
 import './assets/scss/main.scss';
 
 function App() {
   return (
     <div className="App">
-      <BaseLayout>
-        <UserPage />
-      </BaseLayout>
+      <ProviderContext>
+        <BaseLayout>
+          <UserPage />
+        </BaseLayout>
+      </ProviderContext>
     </div>
   );
 }
